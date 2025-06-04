@@ -12,4 +12,3 @@
 
 # 访问地址
 
-[https://blog.austsxk.com](https://blog.austsxk.com)
