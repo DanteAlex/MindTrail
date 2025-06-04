@@ -1,0 +1,59 @@
+extends includes/layout.pug
+block content
+    .about
+        .hello-about
+            .cursor(style='translate:none;rotate:none;scale:none;transform:translate(25vw,150px)')
+            .shapes
+                .shape.shape-1(style='translate:none;rotate:none;scale:none;transform:translate(25vw,150px)')
+                .shape.shape-2(style='translate:none;rotate:none;scale:none;transform:translate(25vw,150px)')
+                .shape.shape-3(style='translate:none;rotate:none;scale:none;transform:translate(25vw,150px)')
+            .content
+                h1 Hello There!
+        script.
+            var helloAboutEl = document.querySelector(".hello-about");
+            helloAboutEl.addEventListener("mousemove", (evt) => {
+                const mouseX = evt.offsetX;
+                const mouseY = evt.offsetY;
+
+                var cursorEl = document.querySelector(".cursor");
+                //- cursorEl.style.transform =
+                //-     "translate(" + mouseX + "px, " + mouseY + "px)";
+
+                //- var shapeElArray = document.querySelectorAll(".shape");
+                //- shapeElArray.forEach(function (shapeEl) {
+                //-     shapeEl.style.transform =
+                //-     "translate(" + mouseX + "px, " + mouseY + "px)";
+                //- });
+                gsap.set(".cursor", {
+                    x: mouseX,
+                    y: mouseY,
+                });
+
+                gsap.to(".shape", {
+                    x: mouseX,
+                    y: mouseY,
+                    stagger: -0.1,
+                });
+            });
+        #markdown-container
+        script.
+            const html = `<h2>About Me 👋</h2>
+                            <blockquote>
+                            <p>
+                                To see the world, things dangerous to come to
+                                <br>
+                                开拓视野，冲破艰险
+                                <br>
+                                To see behind walls, to draw closer
+                                <br>
+                                洞悉所有，贴近生活
+                                <br>
+                                To find each other and to feel
+                                <br>
+                                寻找真爱，感受彼此
+                            </p>
+                            </blockquote>
+                            </a>`;
+            document.getElementById('markdown-container').innerHTML = html;
+            
+            
