@@ -295,13 +295,13 @@ livere:
 # gitalk
 # https://github.com/gitalk/gitalk
 gitalk:
-  client_id:
-  client_secret:
-  repo:
-  owner:
-  admin:
-  language: en # en, zh-CN, zh-TW, es-ES, fr, ru
-  perPage: 10 # Pagination size, with maximum 100.
+  client_id: Ov23liJfrIyHXCfDq3f2
+  client_secret: cf78057731663bf9b3601d8a611b5da189b848f7
+  repo: MindTrail
+  owner: DanteAlex
+  admin: DanteAlex
+  language: zh-CN # en, zh-CN, zh-TW, es-ES, fr, ru
+  perPage: 15 # Pagination size, with maximum 100.
   distractionFreeMode: false # Facebook-like distraction free mode.
   pagerDirection: last # Comment sorting direction, available values are last and first.
   createIssueManually: false # Gitalk will create a corresponding github issue for your every single page automatically

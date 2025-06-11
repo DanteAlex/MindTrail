@@ -122,8 +122,8 @@ theme: butterfly
 deploy:
   type: git
   # 通过github action部署，执行 yarn deploy，这路为什么读取不到 HEXO_BLOG_TOKEN 呢
-  # repo: https://github.com/songxiaokui/blog.git
+  # repo: https://github.com/DanteAlex/MindTrail.git
   # branch: gh-pages
   # token: $HEXO_BLOG_TOKEN
-  repo: git@github.com:songxiaokui/blog.git
-  branch: gh-pages
+  repo: git@github.com:DanteAlex/MindTrail.git
+  branch: main
