@@ -302,9 +302,9 @@ livere:
 gitalk:
   client_id: ad038cb81bb0a2301551
   client_secret: a587700e7324240b06466b55498a1dd26befa2c8
-  repo: heiemooa
-  owner: heiemooa
-  admin: heiemooa
+  repo: alex
+  owner: alex
+  admin: alex
   language: zh-CN # en, zh-CN, zh-TW, es-ES, fr, ru
   perPage: 10 # Pagination size, with maximum 100.
   distractionFreeMode: false # Facebook-like distraction free mode.
@@ -703,7 +703,7 @@ newest_comments:
   valine: false
   github_issues:
     enable: true
-    repo: heiemooa/heiemooa
+    repo: alex/alex
   disqus:
     enable: false
     forum:
