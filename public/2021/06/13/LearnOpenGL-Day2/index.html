@@ -7,7 +7,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://mindtrail.austsxk.com/img/01/02/opengl2.png">
 <meta property="article:published_time" content="2021-06-13T06:14:22.000Z">
-<meta property="article:modified_time" content="2025-06-11T10:57:40.487Z">
+<meta property="article:modified_time" content="2025-06-11T11:09:12.004Z">
 <meta property="article:author" content="Alex">
 <meta property="article:tag" content="OpenGL">
 <meta name="twitter:card" content="summary">
@@ -57,7 +57,7 @@
   isHome: false,
   isHighlightShrink: false,
   isToc: true,
-  postUpdate: '2025-06-11 18:57:40'
+  postUpdate: '2025-06-11 19:09:12'
 }</script><noscript><style type="text/css">
   #nav {
     opacity: 1
@@ -237,15 +237,15 @@
 <h3 id="glfwPollEvents-函数"><a href="#glfwPollEvents-函数" class="headerlink" title="glfwPollEvents()函数"></a><code>glfwPollEvents()</code>函数</h3><p><strong>作用：轮询并处理输入/窗口事件，如果不调用它，窗口就会“假死”，你按什么键都没反应。</strong></p>
 <ul>
 <li>GLFW 会把操作系统收到的事件（如：键盘输入、鼠标点击、窗口大小变化）放入一个事件队列中。</li>
-<li><code>glfwPollEvents()</code> 会从这个队列中取出事件并处理，让你注册的回调函数（如 <code>key_callback</code>）被调用。<h3 id="glfwSwapBuffers-window-函数"><a href="#glfwSwapBuffers-window-函数" class="headerlink" title="glfwSwapBuffers(window)函数"></a><code>glfwSwapBuffers(window)</code>函数</h3></li>
+<li><code>glfwPollEvents()</code> 会从这个队列中取出事件并处理，让你注册的回调函数（如 <code>key_callback</code>）被调用。</li>
 </ul>
-<p><strong>作用：把你在后缓冲画好的图像“交换”到前缓冲中去，呈现在屏幕上，如果不调用它，永远也看不到画的东西。</strong></p>
+<h3 id="glfwSwapBuffers-window-函数"><a href="#glfwSwapBuffers-window-函数" class="headerlink" title="glfwSwapBuffers(window)函数"></a><code>glfwSwapBuffers(window)</code>函数</h3><p><strong>作用：把你在后缓冲画好的图像“交换”到前缓冲中去，呈现在屏幕上，如果不调用它，永远也看不到画的东西。</strong></p>
 <p>OpenGL 默认使用 <strong>双缓冲机制</strong>：</p>
 <ul>
 <li><strong>后缓冲区（back buffer）</strong>：我们用 OpenGL 渲染图像的地方。</li>
-<li><strong>前缓冲区（front buffer）</strong>：显示在屏幕上的图像。<h2 id="最后一件事"><a href="#最后一件事" class="headerlink" title="最后一件事"></a>最后一件事</h2></li>
+<li><strong>前缓冲区（front buffer）</strong>：显示在屏幕上的图像。</li>
 </ul>
-<p>当渲染循环结束后我们需要正确释放/删除之前的分配的所有资源。我们可以在<fun>main</fun>函数的最后调用<fun>glfwTerminate</fun>函数来完成。</p>
+<h2 id="最后一件事"><a href="#最后一件事" class="headerlink" title="最后一件事"></a>最后一件事</h2><p>当渲染循环结束后我们需要正确释放/删除之前的分配的所有资源。我们可以在<fun>main</fun>函数的最后调用<fun>glfwTerminate</fun>函数来完成。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">glfwTerminate</span>();</span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span>;</span><br></pre></td></tr></table></figure>
 
 <p><img src="/img/01/02/hellowindow2.png"></p>
@@ -498,14 +498,14 @@ document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/j
 function loadGitalk () {
   function initGitalk () {
     var gitalk = new Gitalk(Object.assign({
-      clientID: 'ad038cb81bb0a2301551',
-      clientSecret: 'a587700e7324240b06466b55498a1dd26befa2c8',
-      repo: 'alex',
-      owner: 'alex',
-      admin: ['alex'],
+      clientID: 'Ov23liJfrIyHXCfDq3f2',
+      clientSecret: 'cf78057731663bf9b3601d8a611b5da189b848f7',
+      repo: 'MindTrail',
+      owner: 'DanteAlex',
+      admin: ['DanteAlex'],
       id: 'b56b8c37acba56fbe9b54a1112534cdf',
       language: 'zh-CN',
-      perPage: 10,
+      perPage: 15,
       distractionFreeMode: false,
       pagerDirection: 'last',
       createIssueManually: false,

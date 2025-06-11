@@ -224,7 +224,8 @@ glClear(GL_COLOR_BUFFER_BIT);
 
 - GLFW 会把操作系统收到的事件（如：键盘输入、鼠标点击、窗口大小变化）放入一个事件队列中。
 - `glfwPollEvents()` 会从这个队列中取出事件并处理，让你注册的回调函数（如 `key_callback`）被调用。
-###  `glfwSwapBuffers(window)`函数
+
+### `glfwSwapBuffers(window)`函数
 
 **作用：把你在后缓冲画好的图像“交换”到前缓冲中去，呈现在屏幕上，如果不调用它，永远也看不到画的东西。**
 
@@ -232,6 +233,7 @@ OpenGL 默认使用 **双缓冲机制**：
 
 - **后缓冲区（back buffer）**：我们用 OpenGL 渲染图像的地方。
 - **前缓冲区（front buffer）**：显示在屏幕上的图像。
+
 ## 最后一件事
 
 当渲染循环结束后我们需要正确释放/删除之前的分配的所有资源。我们可以在<fun>main</fun>函数的最后调用<fun>glfwTerminate</fun>函数来完成。
