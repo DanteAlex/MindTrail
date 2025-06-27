@@ -1,7 +1,7 @@
 ---
 title: OpenGL入门第三课：原来画个三角形都是这么复杂的操作
 date: 2021-06-13 11:14:12
-cover: /img/01/03/opengl3.png
+cover: /img/01/03/opengl3.jpg
 categories:
   - 实用教程
 tags:
