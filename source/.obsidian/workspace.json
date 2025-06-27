@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "_posts/LearnOpenGL-Day3.md",
+                "file": "_posts/LearnOpenGL-Day2.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "LearnOpenGL-Day3"
+              "title": "LearnOpenGL-Day2"
             }
           }
         ]
@@ -167,9 +167,9 @@
   },
   "active": "9a9f3b526fbbc447",
   "lastOpenFiles": [
+    "_posts/LearnOpenGL-Day3.md",
     "_posts/LearnOpenGL-Day2.md",
     "_posts/LearnOpenGL-Day1.md",
-    "_posts/LearnOpenGL-Day3.md",
     "img/01/03/opengl3.jpg",
     "img/01/03/hellotriangle2.png",
     "img/01/03/hellotriangle.png",

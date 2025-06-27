@@ -70,7 +70,7 @@ float vertices[] = {
 
 一旦你的顶点坐标已经在顶点着色器中处理过，它们就应该是**标准化设备坐标**了，标准化设备坐标是一个x、y和z值在-1.0到1.0的一小段空间。任何落在范围外的坐标都会被丢弃/裁剪，不会显示在你的屏幕上。下面你会看到我们定义的在标准化设备坐标中的三角形(忽略z轴)：
 
-![NDC](../img/01/03/ndc.png "NDC")
+![NDC](/img/01/03/ndc.png "NDC")
 
 与通常的屏幕坐标不同，y轴正方向为向上，(0, 0)坐标是这个图像的中心，而不是左上角。最终你希望所有(变换过的)坐标都在这个坐标空间中，否则它们就不可见了。
 
@@ -271,7 +271,7 @@ glDeleteShader(fragmentShader);
 
 我们的顶点缓冲数据会被解析为下面这样子：
 
-![](../img/01/03/vertex_attribute_pointer.png)
+![](/img/01/03/vertex_attribute_pointer.png)
 
 - 位置数据被储存为32位（4字节）浮点值。
 - 每个位置包含3个这样的值。
@@ -329,7 +329,7 @@ someOpenGLFunctionThatDrawsOurTriangle();
 - 通过<fun>glVertexAttribPointer</fun>设置的顶点属性配置。
 - 通过<fun>glVertexAttribPointer</fun>调用与顶点属性关联的顶点缓冲对象。
 
-![](../img/01/03/vertex_array_objects.png)
+![](/img/01/03/vertex_array_objects.png)
 
 创建一个VAO和创建一个VBO很类似：
 
@@ -376,7 +376,7 @@ glDrawArrays(GL_TRIANGLES, 0, 3);
 
 现在尝试编译代码，如果弹出了任何错误，回头检查你的代码。如果你编译通过了，你应该看到下面的结果：
 
-![](../img/01/04/hellotriangle.png)
+![](/img/01/04/hellotriangle.png)
 
 完整的程序源码可以在[这里](https://learnopengl.com/code_viewer_gh.php?code=src/1.getting_started/2.1.hello_triangle/hello_triangle.cpp)找到。
 
@@ -446,7 +446,7 @@ glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 
 <fun>glDrawElements</fun>函数从当前绑定到<var>GL_ELEMENT_ARRAY_BUFFER</var>目标的EBO中获取其索引。这意味着我们每次想要使用索引渲染对象时都必须绑定相应的EBO，这又有点麻烦。碰巧顶点数组对象也跟踪元素缓冲区对象绑定。在绑定VAO时，绑定的最后一个元素缓冲区对象存储为VAO的元素缓冲区对象。然后，绑定到VAO也会自动绑定该EBO。
 
-![](../img/01/03/vertex_array_objects_ebo.png)
+![](/img/01/03/vertex_array_objects_ebo.png)
 
 !!! Attention
 
@@ -479,4 +479,4 @@ glBindVertexArray(0);
 
 运行程序会获得下面这样的图片的结果。左侧图片看应该起来很熟悉，而右侧的则是使用<def>线框模式</def>(Wireframe Mode)绘制的。线框矩形可以显示出矩形的确是由两个三角形组成的。
 
-![](../img/01/03/hellotriangle2.png)
+![](/img/01/03/hellotriangle2.png)

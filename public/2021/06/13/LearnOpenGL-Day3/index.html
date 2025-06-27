@@ -7,7 +7,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://mindtrail.austsxk.com/img/01/03/opengl3.jpg">
 <meta property="article:published_time" content="2021-06-13T03:14:12.000Z">
-<meta property="article:modified_time" content="2025-06-27T03:47:09.937Z">
+<meta property="article:modified_time" content="2025-06-27T03:51:37.863Z">
 <meta property="article:author" content="Alex">
 <meta property="article:tag" content="OpenGL">
 <meta name="twitter:card" content="summary">
@@ -57,7 +57,7 @@
   isHome: false,
   isHighlightShrink: false,
   isToc: true,
-  postUpdate: '2025-06-27 11:47:09'
+  postUpdate: '2025-06-27 11:51:37'
 }</script><noscript><style type="text/css">
   #nav {
     opacity: 1
@@ -168,7 +168,7 @@
 
 <p>由于OpenGL是在3D空间中工作的，而我们渲染的是一个2D三角形，我们将它顶点的z坐标设置为0.0。这样子的话三角形每一点的<em>深度</em>(Depth，译注2)都是一样的，从而使它看上去像是2D的。</p>
 <p>一旦你的顶点坐标已经在顶点着色器中处理过，它们就应该是<strong>标准化设备坐标</strong>了，标准化设备坐标是一个x、y和z值在-1.0到1.0的一小段空间。任何落在范围外的坐标都会被丢弃/裁剪，不会显示在你的屏幕上。下面你会看到我们定义的在标准化设备坐标中的三角形(忽略z轴)：</p>
-<p><img src="../img/01/03/ndc.png" alt="NDC" title="NDC"></p>
+<p><img src="/img/01/03/ndc.png" alt="NDC" title="NDC"></p>
 <p>与通常的屏幕坐标不同，y轴正方向为向上，(0, 0)坐标是这个图像的中心，而不是左上角。最终你希望所有(变换过的)坐标都在这个坐标空间中，否则它们就不可见了。</p>
 <p>通过使用由<fun>glViewport</fun>函数提供的数据，进行<def>视口变换</def>(Viewport Transform)，<def>标准化设备坐标</def>(Normalized Device Coordinates)会变换为<def>屏幕空间坐标</def>(Screen-space Coordinates)。所得的屏幕空间坐标又会被变换为片段输入到片段着色器中。<br>定义这样的顶点数据以后，我们会把它作为输入发送给图形渲染管线的第一个处理阶段：顶点着色器。它会在GPU上创建内存用于储存我们的顶点数据，还要配置OpenGL如何解释这些内存，并且指定其如何发送给显卡。顶点着色器接着会处理我们在内存中指定数量的顶点。</p>
 <p>我们通过<def>顶点缓冲对象</def>(Vertex Buffer Objects, VBO)管理这个内存，它会在GPU内存（通常被称为显存）中储存大量顶点。使用这些缓冲对象的好处是我们可以一次性的发送一大批数据到显卡上，而不是每个顶点发送一次。从CPU把数据发送到显卡相对较慢，所以只要可能我们都要尝试尽量一次性发送尽可能多的数据。当数据发送至显卡的内存中后，顶点着色器几乎能立即访问顶点，这是个非常快的过程。</p>
@@ -265,7 +265,7 @@
 <p>现在，我们已经把输入顶点数据发送给了GPU，并指示了GPU如何在顶点和片段着色器中处理它。就快要完成了，但还没结束，OpenGL还不知道它该如何解释内存中的顶点数据，以及它该如何将顶点数据链接到顶点着色器的属性上。我们需要告诉OpenGL怎么做。</p>
 <h2 id="链接顶点属性"><a href="#链接顶点属性" class="headerlink" title="链接顶点属性"></a>链接顶点属性</h2><p>顶点着色器允许我们指定任何以顶点属性为形式的输入。这使其具有很强的灵活性的同时，它还的确意味着我们必须手动指定输入数据的哪一个部分对应顶点着色器的哪一个顶点属性。所以，我们必须在渲染前指定OpenGL该如何解释顶点数据。</p>
 <p>我们的顶点缓冲数据会被解析为下面这样子：</p>
-<p><img src="../img/01/03/vertex_attribute_pointer.png"></p>
+<p><img src="/img/01/03/vertex_attribute_pointer.png"></p>
 <ul>
 <li>位置数据被储存为32位（4字节）浮点值。</li>
 <li>每个位置包含3个这样的值。</li>
@@ -301,7 +301,7 @@
 <li>通过<fun>glVertexAttribPointer</fun>设置的顶点属性配置。</li>
 <li>通过<fun>glVertexAttribPointer</fun>调用与顶点属性关联的顶点缓冲对象。</li>
 </ul>
-<p><img src="../img/01/03/vertex_array_objects.png"></p>
+<p><img src="/img/01/03/vertex_array_objects.png"></p>
 <p>创建一个VAO和创建一个VBO很类似：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">unsigned</span> <span class="type">int</span> VAO;</span><br><span class="line"><span class="built_in">glGenVertexArrays</span>(<span class="number">1</span>, &amp;VAO);</span><br></pre></td></tr></table></figure>
 
@@ -314,7 +314,7 @@
 
 <p><fun>glDrawArrays</fun>函数第一个参数是我们打算绘制的OpenGL图元的类型。由于我们在一开始时说过，我们希望绘制的是一个三角形，这里传递<var>GL_TRIANGLES</var>给它。第二个参数指定了顶点数组的起始索引，我们这里填<code>0</code>。最后一个参数指定我们打算绘制多少个顶点，这里是<code>3</code>（我们只从我们的数据中渲染一个三角形，它只有3个顶点长）。</p>
 <p>现在尝试编译代码，如果弹出了任何错误，回头检查你的代码。如果你编译通过了，你应该看到下面的结果：</p>
-<p><img src="../img/01/04/hellotriangle.png"></p>
+<p><img src="/img/01/04/hellotriangle.png"></p>
 <p>完整的程序源码可以在<a target="_blank" rel="noopener" href="https://learnopengl.com/code_viewer_gh.php?code=src/1.getting_started/2.1.hello_triangle/hello_triangle.cpp">这里</a>找到。</p>
 <p>如果你的输出和这个看起来不一样，你可能做错了什么。去查看一下源码，检查你是否遗漏了什么东西，或者你也可以在评论区提问。</p>
 <h2 id="元素缓冲对象"><a href="#元素缓冲对象" class="headerlink" title="元素缓冲对象"></a>元素缓冲对象</h2><p>在渲染顶点这一话题上我们还有最后一个需要讨论的东西——元素缓冲对象(Element Buffer Object，EBO)，也叫索引缓冲对象(Index Buffer Object，IBO)。要解释元素缓冲对象的工作方式最好还是举个例子：假设我们不再绘制一个三角形而是绘制一个矩形。我们可以绘制两个三角形来组成一个矩形（OpenGL主要处理三角形）。这会生成下面的顶点的集合：</p>
@@ -335,7 +335,7 @@
 
 <p>第一个参数指定了我们绘制的模式，这个和<fun>glDrawArrays</fun>的一样。第二个参数是我们打算绘制顶点的个数，这里填6，也就是说我们一共需要绘制6个顶点。第三个参数是索引的类型，这里是<var>GL_UNSIGNED_INT</var>。最后一个参数里我们可以指定EBO中的偏移量（或者传递一个索引数组，但是这是当你不在使用索引缓冲对象的时候），但是我们会在这里填写0。</p>
 <p><fun>glDrawElements</fun>函数从当前绑定到<var>GL_ELEMENT_ARRAY_BUFFER</var>目标的EBO中获取其索引。这意味着我们每次想要使用索引渲染对象时都必须绑定相应的EBO，这又有点麻烦。碰巧顶点数组对象也跟踪元素缓冲区对象绑定。在绑定VAO时，绑定的最后一个元素缓冲区对象存储为VAO的元素缓冲区对象。然后，绑定到VAO也会自动绑定该EBO。</p>
-<p><img src="../img/01/03/vertex_array_objects_ebo.png"></p>
+<p><img src="/img/01/03/vertex_array_objects_ebo.png"></p>
 <p>!!! Attention</p>
 <pre><code>当目标是&lt;var&gt;GL_ELEMENT_ARRAY_BUFFER&lt;/var&gt;的时候，VAO会储存&lt;fun&gt;glBindBuffer&lt;/fun&gt;的函数调用。这也意味着它也会储存解绑调用，所以确保你没有在解绑VAO之前解绑索引数组缓冲，否则它就没有这个EBO配置了。
 </code></pre>
@@ -343,7 +343,7 @@
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ..:: 初始化代码 :: ..</span></span><br><span class="line"><span class="comment">// 1. 绑定顶点数组对象</span></span><br><span class="line"><span class="built_in">glBindVertexArray</span>(VAO);</span><br><span class="line"><span class="comment">// 2. 把我们的顶点数组复制到一个顶点缓冲中，供OpenGL使用</span></span><br><span class="line"><span class="built_in">glBindBuffer</span>(GL_ARRAY_BUFFER, VBO);</span><br><span class="line"><span class="built_in">glBufferData</span>(GL_ARRAY_BUFFER, <span class="built_in">sizeof</span>(vertices), vertices, GL_STATIC_DRAW);</span><br><span class="line"><span class="comment">// 3. 复制我们的索引数组到一个索引缓冲中，供OpenGL使用</span></span><br><span class="line"><span class="built_in">glBindBuffer</span>(GL_ELEMENT_ARRAY_BUFFER, EBO);</span><br><span class="line"><span class="built_in">glBufferData</span>(GL_ELEMENT_ARRAY_BUFFER, <span class="built_in">sizeof</span>(indices), indices, GL_STATIC_DRAW);</span><br><span class="line"><span class="comment">// 4. 设定顶点属性指针</span></span><br><span class="line"><span class="built_in">glVertexAttribPointer</span>(<span class="number">0</span>, <span class="number">3</span>, GL_FLOAT, GL_FALSE, <span class="number">3</span> * <span class="built_in">sizeof</span>(<span class="type">float</span>), (<span class="type">void</span>*)<span class="number">0</span>);</span><br><span class="line"><span class="built_in">glEnableVertexAttribArray</span>(<span class="number">0</span>);</span><br><span class="line"> </span><br><span class="line">[...]</span><br><span class="line"> </span><br><span class="line"><span class="comment">// ..:: 绘制代码（渲染循环中） :: ..</span></span><br><span class="line"><span class="built_in">glUseProgram</span>(shaderProgram);</span><br><span class="line"><span class="built_in">glBindVertexArray</span>(VAO);</span><br><span class="line"><span class="built_in">glDrawElements</span>(GL_TRIANGLES, <span class="number">6</span>, GL_UNSIGNED_INT, <span class="number">0</span>);</span><br><span class="line"><span class="built_in">glBindVertexArray</span>(<span class="number">0</span>);</span><br></pre></td></tr></table></figure>
 
 <p>运行程序会获得下面这样的图片的结果。左侧图片看应该起来很熟悉，而右侧的则是使用<def>线框模式</def>(Wireframe Mode)绘制的。线框矩形可以显示出矩形的确是由两个三角形组成的。</p>
-<p><img src="../img/01/03/hellotriangle2.png"></p>
+<p><img src="/img/01/03/hellotriangle2.png"></p>
 </article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:alexliuza1996@gmail.com">Alex</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://mindtrail.austsxk.com/2021/06/13/LearnOpenGL-Day3/">https://mindtrail.austsxk.com/2021/06/13/LearnOpenGL-Day3/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://mindtrail.austsxk.com" target="_blank">Alex's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/OpenGL/">OpenGL</a></div><div class="post_share"><div class="social-share" data-image="/img/01/03/opengl3.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2021/06/16/LearnOpenGL-Day2/"><img class="prev-cover" src="/img/01/02/opengl2.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">OpenGL入门第二课：来左边跟我一起画个”龙“</div></div></a></div><div class="next-post pull-right"><a href="/2021/06/10/LearnOpenGL-Day1/"><img class="next-cover" src="/img/01/01/opengl1.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">OpenGL入门第一课：它的核心思维，不是函数，而是状态</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2021/06/10/LearnOpenGL-Day1/" title="OpenGL入门第一课：它的核心思维，不是函数，而是状态"><img class="cover" src="/img/01/01/opengl1.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-06-10</div><div class="title">OpenGL入门第一课：它的核心思维，不是函数，而是状态</div></div></a></div><div><a href="/2021/06/16/LearnOpenGL-Day2/" title="OpenGL入门第二课：来左边跟我一起画个”龙“"><img class="cover" src="/img/01/02/opengl2.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-06-16</div><div class="title">OpenGL入门第二课：来左边跟我一起画个”龙“</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="card-info-avatar"><div class="avatar-img"><img src="/img/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-status-box"><div class="author-status"><g-emoji>☀️</g-emoji><span>思想的轨迹</span></div></div></div><div class="author-info__name">Alex</div><div class="author-info__description">开拓视野，冲破艰险，洞悉所有，贴近生活，寻找真爱，感受彼此。</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">4</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">2</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">1</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://alex.austsxk.com/"><i class="fas fa-house"></i><span>AlexRunning</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/DanteAlex" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:alexliuza1996@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="https://twitter.com/Dante_Lucifer_1" target="_blank" title="Twitter"><i class="fab fa-x-twitter"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">This is my Blog !</div><div class="welcome-info"><div class="welcome-info-title"><h4>~~ 欢迎 ~~</h4></div><div id="welcome-info-content"></div></div></div><script>//根据经纬度计算两点距离(点1经度,点1纬度,点2经度,点2纬度)
 function getDistance(e1, n1, e2, n2) {
     const R = 6371
