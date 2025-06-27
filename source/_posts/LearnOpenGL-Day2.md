@@ -1,7 +1,7 @@
 ---
 title: OpenGL入门第二课：来左边跟我一起画个”龙“
-date: 2021-06-13 14:14:22
-cover: /img/01/02/opengl2.png
+date: 2021-06-16 10:01:58
+cover: /img/01/03/opengl2.png
 categories:
   - 实用教程
 tags:

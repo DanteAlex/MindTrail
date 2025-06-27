@@ -13,7 +13,6 @@ keywords:
   - RegExp
   - regex
 ---
-
 # 语法
 
 | 字符                                         | 描述                                                                                                                                                                                                                                  |
